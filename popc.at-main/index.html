@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<head>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' >
+    <title>popc.at</title>
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="preload" href="img/0open.png">
+
+    <link rel="icon" type="image/png" href="img/favicon.png">
+
+    <script language="javascript">
+        function cnt()
+        {
+            var count=parseInt(document.frm1.inp1.value);
+            count++;
+            document.frm1.inp1.value=count;
+        }
+        </script>
+        </head>
+        <body>
+        <form name="frm1" method="post" action="">
+        <img id="cat" onClick="cnt()" onpointerdown="mouseDown()" onpointerup="mouseUp()"/>
+        <center><input type="" name="inp1" value="0"/></center>
+    </form>
+
+
+</head>
+    <script>
+        var min = 1;
+        var max = 7;
+        var i = min;
+        var cat = document.getElementById("cat");
+
+        // Prevent context menu (stop it from appearing on phones when user long-presses).
+        window.oncontextmenu = function(event) 
+        {
+            event.preventDefault();
+            event.stopPropagation();
+            return false;
+        };
+
+        document.addEventListener('keydown', keyDown);
+        document.addEventListener('keyup', keyUp);
+
+        function keyDown(e) 
+        {
+            mouseDown();
+        }
+
+        function keyUp(e)
+        {
+            mouseUp();
+        }
+
+        function random() 
+        {
+            return Math.floor(Math.random() * (max - min) + min);
+        }
+
+        function mouseDown()
+        {
+            cat.src = "img/0open.png";
+
+            new Audio('snd/pop' + random() + '.mp3').play();
+
+            i++;
+
+            if (i > max)
+            {
+                i = min;
+            }
+        }
+
+        function mouseUp()
+        {
+            cat.src = "img/0close.png";
+        }
+    </script>
+</body>
